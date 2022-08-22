@@ -78,3 +78,5 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 // Process sharing fix for util module - Angular v12 upgratde fix. This might go away as it probably
 // comes from dependencies that fails to handle proper process sharing rules 
 (window as any).process = { env: { DEBUG: undefined }, };
+
+(window as any).global = window;

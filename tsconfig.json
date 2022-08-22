@@ -16,7 +16,8 @@
       "dom"
     ],
     "module": "es2020",
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "allowSyntheticDefaultImports": true
   },
   "angularCompilerOptions": {
     "preserveWhitespaces": false

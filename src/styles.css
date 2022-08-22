@@ -45,3 +45,5 @@ body {
 .flexCol {
     flex-direction: column;
 }
+
+@import '~maplibre-gl/dist/maplibre-gl.css';

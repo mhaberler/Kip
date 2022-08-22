@@ -82,6 +82,8 @@
   },
   "dependencies": {
     "@biacsics/ng-canvas-gauges": "^6.0.7",
+    "@maplibre/ngx-maplibre-gl": "^13.0.0",
+    "maplibre-gl": "^2.3.0",
     "util": "^0.12.4"
   }
 }
