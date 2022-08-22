@@ -15,7 +15,7 @@ import { WidgetGaugeNgLinearComponent} from './widget-gauge-ng-linear/widget-gau
 import { WidgetGaugeNgRadialComponent} from './widget-gauge-ng-radial/widget-gauge-ng-radial.component';
 import { WidgetAutopilotComponent } from "./widget-autopilot/widget-autopilot.component";
 import { WidgetSimpleLinearComponent } from "./widget-simple-linear/widget-simple-linear.component";
-import { DisplayMapComponent } from "./widget-maplibre/widget-maplibre.component";
+import { WidgetMapLibreComponent } from "./widget-maplibre/widget-maplibre.component";
 
 class widgetInfo {
   name: string;
@@ -107,7 +107,7 @@ export class WidgetListService {
       },
       {
         name: 'WidgetMapLibreComponent',
-        componentName: DisplayMapComponent,
+        componentName: WidgetMapLibreComponent,
         description: 'Map'
       }
     ]
