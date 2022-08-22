@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable ,  Subject, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { SignalKService } from './signalk.service';
 import { IDeltaMessage } from './signalk-interfaces';
 import { NotificationsService } from './notifications.service';
@@ -14,30 +14,30 @@ export class SignalKDeltaService {
   constructor(
     private SignalKService: SignalKService,
     private notificationsService: NotificationsService,
-    ) { }
+  ) { }
 
   processWebsocketMessage(message: IDeltaMessage) {
     // Read raw message and route to appropriate sub
-    if (typeof(message.self) != 'undefined') {  // is Hello message
+    if (typeof (message.self) != 'undefined') {  // is Hello message
       this.SignalKService.setSelf(message.self);
       this.SignalKService.setServerVersion(message.version);
       return;
     }
 
 
-    if (typeof(message.updates) != 'undefined') {
+    if (typeof (message.updates) != 'undefined') {
       this.processUpdateDelta(message); // is Data Update process further
     }
 
-    if (typeof(message.requestId) != 'undefined') {
+    if (typeof (message.requestId) != 'undefined') {
       this.signalKRequests.next(message); // is a Request, send to signalk-request service.
     }
 
   }
 
-  public processUpdateDelta(message:IDeltaMessage) {
+  public processUpdateDelta(message: IDeltaMessage) {
     let context: string;
-    if (typeof(message.context) == 'undefined') {
+    if (typeof (message.context) == 'undefined') {
       context = 'self'; //default if not defined
     } else {
       context = message.context;
@@ -60,7 +60,7 @@ export class SignalKDeltaService {
         source = update['$source'];
       } else if ((update.source !== undefined) && (update.source.src !== undefined) && (update.source.label !== undefined)) {
         source = update.source.label + '.' + update.source.src;
-      } else if (update.source.label !== undefined) {
+      } else if ((update.source !== undefined) && (update.source.label !== undefined)) {
         source = update.source.label;
       } else {
         source = "unknown";
@@ -75,7 +75,7 @@ export class SignalKDeltaService {
           // it's a data update. Update local tree
           let fullPath = context + '.' + value.path;
           if (value.path == '') { fullPath = context; } // if path is empty we shouldn't have a . at the end
-          if ( (typeof(value.value) == 'object') && (value.value !== null)) {
+          if ((typeof (value.value) == 'object') && (value.value !== null)) {
             // compound data
             let keys = Object.keys(value.value);
             for (let i = 0; i < keys.length; i++) {
@@ -94,4 +94,4 @@ export class SignalKDeltaService {
     return this.signalKRequests.asObservable();
   }
 
- }
+}
